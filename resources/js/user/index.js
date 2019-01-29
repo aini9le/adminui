@@ -52,6 +52,8 @@ var Userinfo = function(){
 	            cardView: false,                    //是否显示详细视图
 	            detailView: false,                 //是否显示父子表
 	            undefinedText:'',
+	            responseHandler:user.responseHandler,//请求数据成功后，渲染表格前的方法
+	            dataField: "data",
 	            columns: [{
 	            	 checkbox: true
 	            	 },{
@@ -242,6 +244,18 @@ var Userinfo = function(){
     		
     	}
     	return open;
+    }
+    
+    user.responseHandler = function (result){
+    	var code = result.code;
+        if(code != 200){
+            alert("错误代码" + result.message);
+            return;
+        }
+        return {
+            total : result.info.total,
+            data : result.info.rows 
+        };
     }
     
 	return user;
