@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>菜单编辑主页</title>
+<div th:include="main/head"></div></head>
+
+<body>
+<div class="modal-body">
+<form id="regForm"  method="post">
+    <input type="hidden" name="id" th:value="${menu.id}"/>
+    <table class="form">
+       <tr>
+        <th class="formTitle">菜单名称</th>
+        <td class="formValue">
+            <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
+               class="form-control" name="menuName" placeholder="请填写菜单名称"  th:value="${menu.menuName}"/>
+        <!-- <input type="number" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
+               class="form-control" name="id" placeholder="id"> -->
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">菜单路径	</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="menuUrl" placeholder="请输入菜单路径"  th:value="${menu.menuUrl}"
+            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">菜单权限编码</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="menuAuthority" placeholder="请输入菜单权限编码"  th:value="${menu.menuAuthority}"
+            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
+        </td>
+       </tr>
+       
+       <tr>
+        <th class="formTitle">父级菜单id</th>
+        <td class="formValue">
+           <div class="input-group input-group-sm" style="width: 250px;">
+               <input type="text" class="form-control" name="supId" placeholder="请输入父级菜单id" th:value="${menu.supId}"
+               isvalid="yes" checkexpession="NotNull" maxlength="50" style="width: 200px;"/>
+               <span class="input-group-btn">
+                   <button type="button" class="btn btn-info btn-flat">
+                    <span class="glyphicon glyphicon-plus" id="selectParentMenu" aria-hidden="true">选择</span>
+                   </button>
+               </span>
+           </div>
+        </td>
+       </tr>
+       
+       <tr>
+         <th class="formTitle">菜单类型</th>
+         <td class="formValue">
+           <input type="radio" name="menuType" value="D" class="flat-red" th:checked="${(menu.menuType == 'D')?('checked'):(null)}" />文件夹
+           <input type="radio" name="menuType" value="U" class="flat-red" th:checked="${(menu.menuType == 'U')?('checked'):(null)}" />链接
+           <input type="radio" name="menuType" value="B" class="flat-red" th:checked="${(menu.menuType == 'B')?('checked'):(null)}" />按钮
+         </td>
+       </tr>
+       
+       
+       
+       <tr>
+        <th class="formTitle">菜单图标</th>
+        <td class="formValue">
+          <div class="input-group input-group-sm" style="width: 250px;">
+              <input type="text" class="form-control" name="iconcls" placeholder="glyphicon glyphicon-plus" th:value="${menu.iconcls}"
+              isvalid="yes" checkexpession="NotNull" maxlength="100"/>
+              <span class="input-group-btn">
+                   <button type="button" class="btn btn-info btn-flat">
+                     <a href="http://www.runoob.com/try/demo_source/bootstrap-glyph-customization.htm" target="_black">
+                     <span class="glyphicon glyphicon-plus" id="selectParentMenu" aria-hidden="true">查看图标</span>
+                     </a>
+                   </button>
+               </span>
+           </div>
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">排序</th>
+        <td class="formValue">
+           <input type="number" class="form-control" name="menuSort" placeholder="请输入菜单序号" th:value="${menu.menuSort}"
+           isvalid="yes" checkexpession="NotNull" maxlength="100" style="width: 100px;"/>
+        </td>
+       </tr> 
+    </table>
+</form>
+</div>
+ <footer>
+	<div class="form-button" id="wizard-actions" style="text-align: center;">
+	<!--         <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a> -->
+<!-- 	        <a id="btn_next" class="btn btn-default btn-next">下一步</a> -->
+	     <a id="btn_finish" class="btn btn-success">填写完成,提交表单</a>
+	 </div>
+ </footer>
+ <div th:include="main/scripts"></div>
+</body>
+ <script type="text/javascript" th:src="@{/plugins/superui/superui/content/plugins/validator/validator.js}"></script>
+<link rel="stylesheet" th:href="@{/plugins/superui/superui/content/plugins/iCheck/all.css}"/>
+<script th:src="@{/plugins/superui/superui/content/plugins/iCheck/icheck.min.js}"></script>
+<script th:src="@{/js/menu/editIndex.js}" type="text/javascript"></script>
+<script type="text/javascript">
+
+var edit = new EditMenuInfo();
+edit.initEditForm();
+
+$(function(){
+	$('input[type="radio"].flat-red').iCheck({
+      radioClass: 'iradio_flat-green'
+    });
+});  
+</script>
+</html>
