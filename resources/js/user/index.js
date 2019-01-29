@@ -2,16 +2,15 @@
  * 基础用户
  */
 $(function() {
-	var module = new Userinfo();
+	var module = new User();
 	module.initIndex();
 })
 
-var Userinfo = function(){
-	var user = new Object();
-	
-	user.options = {
+var User = function(){
+	var obj = new Object();
+	obj.options = {
 			tableName:"#dataTable",
-			openId:"userInfoEditForm",
+			openId:"userEditForm",
 	    	dataUrl : "http://localhost:8888/admin/user/dataGrid",   // 表格查询路径
 	    	editUrl : "http://localhost:8888/admin/user/editIndex",  //跳转到编辑页面路径
 	    	removeUrl : "http://localhost:8888/admin/user/removes",  //删除路径
@@ -19,15 +18,15 @@ var Userinfo = function(){
 	    		
 	}; //参数对象
 	
-	user.initIndex = function () {
-		user.loadGrid().init();
-		user.buttonInit();
+	obj.initIndex = function () {
+		obj.loadGrid().init();
+		obj.buttonInit();
 	};
-	user.loadGrid = function () {
+	obj.loadGrid = function () {
 		var loadGrid = new Object();
 	    loadGrid.init = function(){
-	    	$(user.options.tableName).bootstrapTable({
-	            url: user.options.dataUrl,         //请求后台的URL（*）
+	    	$(obj.options.tableName).bootstrapTable({
+	            url: obj.options.dataUrl,         //请求后台的URL（*）
 	            method: 'get',                      //请求方式（*）
 	            toolbar: '#toolbar',                //工具按钮用哪个容器
 	            striped: true,                      //是否显示行间隔色
@@ -52,7 +51,7 @@ var Userinfo = function(){
 	            cardView: false,                    //是否显示详细视图
 	            detailView: false,                 //是否显示父子表
 	            undefinedText:'',
-	            responseHandler:user.responseHandler,//请求数据成功后，渲染表格前的方法
+	            responseHandler:obj.responseHandler,//请求数据成功后，渲染表格前的方法
 	            dataField: "data",
 	            columns: [{
 	            	 checkbox: true
@@ -148,40 +147,36 @@ var Userinfo = function(){
 	/**
 	 * 绑定按钮事件
 	 */
-	user.buttonInit = function (){
+	obj.buttonInit = function (){
 		
-		//查询
-    	$("#btn_query").on("click",function(){
+    	$("#btn_query").on("click",function(){//查询
     		var files = {
     				"columns[userid]":$("input[name='userid']").val().trim(),
     				"columns[name_like]":$("input[name='name']").val().trim()
     		}
     		var par = {
-    	      url: user.options.dataUrl, //重设数据来源
+    	      url: obj.options.dataUrl, //重设数据来源
     	      query: files//传到后台的参数
-    	     }
-    		$(user.options.tableName).bootstrapTable("refresh",par);
+    	    }
+    		$(obj.options.tableName).bootstrapTable("refresh",par);
     	});
     	
-    	//新增
-    	$("#btn_add").on("click",function(){
-    		user.modalOpen().editOpen(user.options.openId,null);
+    	$("#btn_add").on("click",function(){//新增
+    		obj.modalOpen().editOpen(obj.options.openId,null);
         });
     	
-    	//修改
-    	$("#btn_edit").on("click",function(){
-            var ids = $(user.options.tableName).bootstrapTable("getSelections");
+    	$("#btn_edit").on("click",function(){//修改
+            var ids = $(obj.options.tableName).bootstrapTable("getSelections");
             console.log(ids);
             if(ids.length==1){
-            	user.modalOpen().editOpen(user.options.openId,ids[0].id);
+            	obj.modalOpen().editOpen(obj.options.openId,ids[0].id);
             }else{
         		$.fn.modalMsg("请选择一条需要修改的信息", "error");
         	}
     	});
     	
-    	//删除
-        $("#btn_delete").on("click",function(){
-        	var ids = $(user.options.tableName).bootstrapTable("getSelections");
+        $("#btn_delete").on("click",function(){//删除
+        	var ids = $(obj.options.tableName).bootstrapTable("getSelections");
         	if(ids.length>0){
         		var id = "";
         		var len = ids.length;
@@ -191,10 +186,10 @@ var Userinfo = function(){
         				id +=",";
         			}
         		});
-        		$.fn.modalConfirm("确定删除所选用户吗？",function(index,bool){
+        		$.fn.modalConfirm("确定删除吗？",function(index,bool){
         			if(bool){
         				var opt = {ids:id};
-        				user.requestGame(user.options.removeUrl,opt);
+        				obj.requestGame(obj.options.removeUrl,opt);
         				layer.close(index);
         			}
         		});
@@ -204,12 +199,8 @@ var Userinfo = function(){
         });
     };
     
- // 表格加载成功后加载按钮事件
-    user.successButtonInit = function (){
-//	    	var url ="../advertis/saves.do";
-    };
     
-    user.requestGame = function(url,data){
+    obj.requestGame = function(url,data){
     	var options = {
                 url: url,
                 type: "post",
@@ -230,14 +221,14 @@ var Userinfo = function(){
     /**
      * 修改或新曾弹出框
      */
-    user.modalOpen = function (){
+    obj.modalOpen = function (){
     	var open = new Object();
         open.options = {};  // 窗口参数
     	open.editOpen = function(openId,id){
     		$.fn.modalNotFooterOpen({
 //    			id :openId,
     			title : "编辑管理员信息",
-    			url : user.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
+    			url : obj.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
     			width : "800px",
     			height : "500px"
     		});
@@ -246,7 +237,10 @@ var Userinfo = function(){
     	return open;
     }
     
-    user.responseHandler = function (result){
+    /**
+     * 数据解析
+     */
+    obj.responseHandler = function (result){
     	var code = result.code;
         if(code != 200){
             alert("错误代码" + result.message);
@@ -258,5 +252,5 @@ var Userinfo = function(){
         };
     }
     
-	return user;
+	return obj;
 }
