@@ -3,86 +3,106 @@
 <head>
 <meta charset="UTF-8"/>
 <title>菜单编辑主页</title>
-<div th:include="main/head"></div></head>
 
+</head>
 <body>
-<div class="modal-body">
-<form id="regForm"  method="post">
-    <input type="hidden" name="id" th:value="${menu.id}"/>
+<div class="modal-body" style="height:370px;">
+<form id="userEditForm"  method="post">
+    <input type="hidden" name="id" th:value="${user.id}" />
     <table class="form">
        <tr>
-        <th class="formTitle">菜单名称</th>
+        <th class="formTitle">帐号</th>
         <td class="formValue">
             <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
-               class="form-control" name="menuName" placeholder="请填写菜单名称"  th:value="${menu.menuName}"/>
-        <!-- <input type="number" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
-               class="form-control" name="id" placeholder="id"> -->
+               class="form-control" name="userid" placeholder="请填写帐号"  th:value="${user.userid}"/>
         </td>
        </tr>
        <tr>
-        <th class="formTitle">菜单路径	</th>
+        <th class="formTitle">名称	</th>
         <td class="formValue">
-            <input type="text" class="form-control" name="menuUrl" placeholder="请输入菜单路径"  th:value="${menu.menuUrl}"
+            <input type="text" class="form-control" name="name" placeholder="请输入名称"  th:value="${user.name}"
             isvalid="yes" checkexpession="NotNull" maxlength="200"/>
         </td>
        </tr>
        <tr>
-        <th class="formTitle">菜单权限编码</th>
+        <th class="formTitle">手机号码</th>
         <td class="formValue">
-            <input type="text" class="form-control" name="menuAuthority" placeholder="请输入菜单权限编码"  th:value="${menu.menuAuthority}"
-            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
-        </td>
-       </tr>
-       
-       <tr>
-        <th class="formTitle">父级菜单id</th>
-        <td class="formValue">
-           <div class="input-group input-group-sm" style="width: 250px;">
-               <input type="text" class="form-control" name="supId" placeholder="请输入父级菜单id" th:value="${menu.supId}"
-               isvalid="yes" checkexpession="NotNull" maxlength="50" style="width: 200px;"/>
-               <span class="input-group-btn">
-                   <button type="button" class="btn btn-info btn-flat">
-                    <span class="glyphicon glyphicon-plus" id="selectParentMenu" aria-hidden="true">选择</span>
-                   </button>
-               </span>
-           </div>
-        </td>
-       </tr>
-       
-       <tr>
-         <th class="formTitle">菜单类型</th>
-         <td class="formValue">
-           <input type="radio" name="menuType" value="D" class="flat-red" th:checked="${(menu.menuType == 'D')?('checked'):(null)}" />文件夹
-           <input type="radio" name="menuType" value="U" class="flat-red" th:checked="${(menu.menuType == 'U')?('checked'):(null)}" />链接
-           <input type="radio" name="menuType" value="B" class="flat-red" th:checked="${(menu.menuType == 'B')?('checked'):(null)}" />按钮
-         </td>
-       </tr>
-       
-       
-       
-       <tr>
-        <th class="formTitle">菜单图标</th>
-        <td class="formValue">
-          <div class="input-group input-group-sm" style="width: 250px;">
-              <input type="text" class="form-control" name="iconcls" placeholder="glyphicon glyphicon-plus" th:value="${menu.iconcls}"
-              isvalid="yes" checkexpession="NotNull" maxlength="100"/>
-              <span class="input-group-btn">
-                   <button type="button" class="btn btn-info btn-flat">
-                     <a href="http://www.runoob.com/try/demo_source/bootstrap-glyph-customization.htm" target="_black">
-                     <span class="glyphicon glyphicon-plus" id="selectParentMenu" aria-hidden="true">查看图标</span>
-                     </a>
-                   </button>
-               </span>
-           </div>
+            <input type="text" class="form-control" name="mobile" placeholder="请输入手机号码"  th:value="${user.mobile}"
+            isvalid="yes" checkexpession="Mobile" maxlength="200"/>
         </td>
        </tr>
        <tr>
-        <th class="formTitle">排序</th>
+        <th class="formTitle">职位信息</th>
         <td class="formValue">
-           <input type="number" class="form-control" name="menuSort" placeholder="请输入菜单序号" th:value="${menu.menuSort}"
-           isvalid="yes" checkexpession="NotNull" maxlength="100" style="width: 100px;"/>
+            <input type="text" class="form-control" name="position" placeholder="请输入职位信息"  th:value="${user.position}"
+            isvalid="yes" maxlength="200"/>
         </td>
-       </tr> 
+       </tr>
+       <tr>
+        <th class="formTitle">性别</th>
+        <td class="formValue">
+        <select class="form-control" isvalid="yes" checkexpession="NotNull" style="width:179px;" name="gender">
+	                                    <option value="0" th:selected="${user.gender=='0'}">未定义</option>
+	                                    <option value="1" th:selected="${user.gender=='1'}">男性</option>
+	                                    <option value="2" th:selected="${user.gender=='2'}">女性</option>
+	                     </select>
+	    </td>                 
+       </tr>
+       <tr>
+        <th class="formTitle">邮箱</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="email" placeholder="请输入邮箱"  th:value="${user.email}"
+             maxlength="200"/>
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">否为上级</th>
+        <td class="formValue">
+        <select class="form-control" style="width:179px;" name="isleader">
+	                                    <option value="0" th:selected="${user.isleader=='0'}">否</option>
+	                                    <option value="1" th:selected="${user.isleader=='1'}">是</option>
+	                     </select>
+	    </td>                 
+       </tr>
+       <tr>
+        <th class="formTitle">头像url</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="avatar" placeholder="请输入头像url"  th:value="${user.avatar}"
+            isvalid="yes"  maxlength="200"/>
+        </td>
+       </tr>
+       <tr>
+       <th class="formTitle">座机</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="telephone" placeholder="请输座机"  th:value="${user.telephone}"
+             maxlength="200"/>
+        </td>
+       </tr>
+       <tr>
+       <th class="formTitle">英文名</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="englishName" placeholder="请输入英文名"  th:value="${user.englishName}"
+             maxlength="200"/>
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">激活状态</th>
+        <td class="formValue">
+        <select class="form-control" style="width:179px;" name="status">
+	                                    <option value="1" th:selected="${user.status=='1'}">已激活</option>
+	                                    <option value="2" th:selected="${user.status=='2'}">已禁用</option>
+	                                    <option value="3" th:selected="${user.status=='3'}">未激活</option>
+	                     </select>
+	    </td>                 
+       </tr>
+       <tr>
+       <th class="formTitle">二维码</th>
+        <td class="formValue">
+            <input type="text" class="form-control" name="qrCode" placeholder="请输入二维码"  th:value="${user.qrCode}"
+            isvalid="yes" maxlength="200"/>
+        </td>
+       </tr>
+       
     </table>
 </form>
 </div>
@@ -90,24 +110,10 @@
 	<div class="form-button" id="wizard-actions" style="text-align: center;">
 	<!--         <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a> -->
 <!-- 	        <a id="btn_next" class="btn btn-default btn-next">下一步</a> -->
-	     <a id="btn_finish" class="btn btn-success">填写完成,提交表单</a>
+	     <a id="btn_save" class="btn btn-success">填写完成,提交表单</a>
 	 </div>
  </footer>
- <div th:include="main/scripts"></div>
+
 </body>
- <script type="text/javascript" th:src="@{/plugins/superui/superui/content/plugins/validator/validator.js}"></script>
-<link rel="stylesheet" th:href="@{/plugins/superui/superui/content/plugins/iCheck/all.css}"/>
-<script th:src="@{/plugins/superui/superui/content/plugins/iCheck/icheck.min.js}"></script>
-<script th:src="@{/js/menu/editIndex.js}" type="text/javascript"></script>
-<script type="text/javascript">
 
-var edit = new EditMenuInfo();
-edit.initEditForm();
-
-$(function(){
-	$('input[type="radio"].flat-red').iCheck({
-      radioClass: 'iradio_flat-green'
-    });
-});  
-</script>
 </html>

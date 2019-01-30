@@ -11,10 +11,10 @@ var User = function(){
 	obj.options = {
 			tableName:"#dataTable",
 			openId:"userEditForm",
-	    	dataUrl : "http://localhost:8888/admin/user/dataGrid",   // 表格查询路径
-	    	editUrl : "http://localhost:8888/admin/user/editIndex",  //跳转到编辑页面路径
-	    	removeUrl : "http://localhost:8888/admin/user/removes",  //删除路径
-	    	editFormIndex : "http://localhost:8888/admin/user/editIndex"   //
+	    	dataUrl : "http://localhost:8888/admin/user/dataGrid",
+	    	editUrl : "http://localhost:8888/admin/user/editIndex",
+	    	removeUrl : "http://localhost:8888/admin/user/removes",
+	    	editFormIndex : "../../pages/user/editIndex.html"
 	    		
 	}; //参数对象
 	
@@ -226,7 +226,7 @@ var User = function(){
         open.options = {};  // 窗口参数
     	open.editOpen = function(openId,id){
     		$.fn.modalNotFooterOpen({
-//    			id :openId,
+    			id :openId,
     			title : "编辑管理员信息",
     			url : obj.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
     			width : "800px",
