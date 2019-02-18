@@ -221,7 +221,7 @@ var User = function(){
     /**
      * 修改或新曾弹出框
      */
-    obj.modalOpen = function (){
+    obj.modalOpen = function (){0.
     	var open = new Object();
         open.options = {};  // 窗口参数
     	open.editOpen = function(openId,id){
