@@ -1,4 +1,5 @@
 ﻿var SchedulerMgr = function() {
+	alert("");
     var exports = {};
     exports.options = {};
     exports.options.ItemId = "";
@@ -88,7 +89,7 @@
     exports.btnEdit = function () {
         var keyValue = $("#gridTable").jqGridRowValue("Id");
         var taskName = $("#gridTable").jqGridRowValue("TaskName");
-        if (checkedRow(keyValue)) {
+//        if (checkedRow(keyValue)) {
             $.fn.modalOpen({
                 id: "jobDetailForm",
                 title: '编辑【'+taskName+'】任务',
@@ -99,7 +100,7 @@
                     top.frames[iframeId].AcceptClick();
                 }
             });
-        }
+//        }
     }
     //添加
     exports.btnAdd = function () {
@@ -135,11 +136,12 @@
     
     //加载Grid
     exports.loadGrid = function () {
+    	alert("--+")
         var selectedRowIndex = 0;
         exports.options.$gridTable = $("#gridTable");
         exports.options.$gridTable.jqGrid({
             datatype: "json",
-            url: "/content/supermgr/json/JobDetailGrid.json",
+            url: "../../resources/superui/content/supermgr/json/JobDetailGrid.json",
             height: $.fn.getGridHeight(true),
             autowidth: true,
             colModel: [
@@ -190,6 +192,7 @@
     }
     //查询表格函数
     exports.SearchEvent=function () {
+    	alert("--")
         var queryJson = $("#form1").GetWebControls();
 
         var taskType = $("#taskTypeCondition .dropdown-text").attr('data-value');
@@ -197,7 +200,7 @@
         queryJson["TaskType"] = taskType;
         queryJson["TaskStatus"] = taskStatus;
         $("#gridTable").jqGrid('setGridParam', {
-            url: "/content/supermgr/json/JobDetailGrid.json",
+            url: "../../resources/superui/content/supermgr/json/JobDetailGrid.json",
             postData: queryJson,
             page: 1
         }).trigger('reloadGrid');

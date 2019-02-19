@@ -221,12 +221,12 @@ var User = function(){
     /**
      * 修改或新曾弹出框
      */
-    obj.modalOpen = function (){0.
+    obj.modalOpen = function (){
     	var open = new Object();
         open.options = {};  // 窗口参数
     	open.editOpen = function(openId,id){
     		$.fn.modalNotFooterOpen({
-    			id :openId,
+//    			id :openId,
     			title : "编辑管理员信息",
     			url : obj.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
     			width : "800px",
