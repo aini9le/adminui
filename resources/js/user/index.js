@@ -1,11 +1,6 @@
 /**
  * 基础用户
  */
-$(function() {
-	var module = new User();
-	module.initIndex();
-})
-
 var User = function(){
 	var obj = new Object();
 	obj.options = {
@@ -169,7 +164,8 @@ var User = function(){
             var ids = $(obj.options.tableName).bootstrapTable("getSelections");
             console.log(ids);
             if(ids.length==1){
-            	obj.modalOpen().editOpen(obj.options.openId,ids[0].id);
+//            	obj.modalOpen().editOpen(obj.options.openId,ids[0].id);
+            	obj.modalOpen();
             }else{
         		$.fn.modalMsg("请选择一条需要修改的信息", "error");
         	}
@@ -216,26 +212,78 @@ var User = function(){
                 }
             };
             $.ajax(options);
-    } 
+    }
+    
+  //保存表单
+    obj.acceptClick = function() {
+		console.log("--");
+//        if (!$('#form1').Validform()) {
+//            return false;
+//        }
+        var postData = $("#form1").GetWebControls(exports.options.KeyValue);
+        console.log("postData:"+postData)
+        $.fn.submitForm({
+            url: "/SysMgr/SchedulerMgr/Save?keyValue=" + exports.options.KeyValue,
+            param: postData,
+            loading: "正在保存数据...",
+            success: function() {
+                $.currentIframe().$("#gridTable").resetSelection();
+                $.currentIframe().$("#gridTable").trigger("reloadGrid");
+            }
+        });
+    }
+	
+	//初始化表单
+    obj.initFormControl = function (readonly) {
+//		user.options.KeyValue = $.fn.request("keyValue");
+	        $("#gender").ComboBox({
+	            description: "==请选择=="
+	        });
+	        //获取表单
+//	        if (!!exports.options.KeyValue) {
+	            $.fn.setForm({
+	                url: "http://localhost:8888/admin/user/findById?id=1011525769814718007",
+	                param: {},
+	                success: function (data) {
+	                	console.log("data11111:"+JSON.stringify(data.info.data));
+	                    $("#form1").SetWebControls(data.info.data);
+	                }
+	            });
+//	        }
+	    }
     
     /**
      * 修改或新曾弹出框
      */
+//    obj.modalOpen = function (){
+//    	var open = new Object();
+//        open.options = {};  // 窗口参数
+//    	open.editOpen = function(openId,id){
+//    		$.fn.modalNotFooterOpen({
+////    			id :openId,
+//    			title : "编辑管理员信息",
+//    			url : obj.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
+//    			width : "800px",
+//    			height : "500px"
+//    		});
+//    		
+//    	}
+//    	return open;
+//    }
+    
     obj.modalOpen = function (){
-    	var open = new Object();
-        open.options = {};  // 窗口参数
-    	open.editOpen = function(openId,id){
-    		$.fn.modalNotFooterOpen({
-//    			id :openId,
-    			title : "编辑管理员信息",
-    			url : obj.options.editFormIndex + ((id===undefined || id === null)?"":("?id="+id)),
-    			width : "800px",
-    			height : "500px"
-    		});
-    		
-    	}
-    	return open;
+            $.fn.modalOpen({
+                id: "editIndex",
+                title: '编辑任务',
+                url: 'editIndex.html?keyValue=123',
+                width: "750px",
+                height: "550px",
+                callBack: function (iframeId) {
+                    top.frames[iframeId].acceptClick();
+                }
+            });
     }
+    
     
     /**
      * 数据解析
@@ -253,4 +301,7 @@ var User = function(){
     }
     
 	return obj;
+	
+	
+	
 }

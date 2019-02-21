@@ -1,119 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<title>菜单编辑主页</title>
-
+    <meta charset="utf-8" />
+    <title>SuperMgr后台框架</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet" href="../../resources/superui/content/ui/global/bootstrap/css/bootstrap.min.css">
+    <link href="../../resources/superui/content/ui/global/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="../../resources/superui/content/adminlte/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="../../resources/superui/content/adminlte/dist/css/skins/_all-skins.min.css">
+    <link href="../../resources/superui/content/min/css/supershopui.common.min.css" rel="stylesheet" />
+    <link href="../../resources/superui/content/supermgr/Base/css/common.css" rel="stylesheet"/>
+    <script src="../../resources/superui/Content/plugins/datepicker/WdatePicker.js"></script>
+    <style type="text/css">
+        .formDiv {
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .form-control{
+          disabled:false;
+        }
+    </style>
 </head>
 <body>
-<div class="modal-body" style="height:370px;">
-<form id="userEditForm"  method="post">
-    <input type="hidden" name="id" th:value="${user.id}" />
-    <table class="form">
-       <tr>
-        <th class="formTitle">帐号</th>
-        <td class="formValue">
-            <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
-               class="form-control" name="userid" placeholder="请填写帐号"  />
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">名称	</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="name" placeholder="请输入名称"  
-            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">手机号码</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="mobile" placeholder="请输入手机号码"  
-            isvalid="yes" checkexpession="Mobile" maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">职位信息</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="position" placeholder="请输入职位信息"  
-            isvalid="yes" maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">性别</th>
-        <td class="formValue">
-        <select class="form-control" isvalid="yes" checkexpession="NotNull" style="width:179px;" name="gender">
-	                                    <option value="0" >未定义</option>
-	                                    <option value="1" >男性</option>
-	                                    <option value="2" >女性</option>
-	                     </select>
-	    </td>                 
-       </tr>
-       <tr>
-        <th class="formTitle">邮箱</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="email" placeholder="请输入邮箱"  th:value="${user.email}"
-             maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">否为上级</th>
-        <td class="formValue">
-        <select class="form-control" style="width:179px;" name="isleader">
-	                                    <option value="0" >否</option>
-	                                    <option value="1" >是</option>
-	                     </select>
-	    </td>                 
-       </tr>
-       <tr>
-        <th class="formTitle">头像url</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="avatar" placeholder="请输入头像url"  
-            isvalid="yes"  maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-       <th class="formTitle">座机</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="telephone" placeholder="请输座机"  
-             maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-       <th class="formTitle">英文名</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="englishName" placeholder="请输入英文名"  
-             maxlength="200"/>
-        </td>
-       </tr>
-       <tr>
-        <th class="formTitle">激活状态</th>
-        <td class="formValue">
-        <select class="form-control" style="width:179px;" name="status">
-	                                    <option value="1" >已激活</option>
-	                                    <option value="2" >已禁用</option>
-	                                    <option value="3" >未激活</option>
-	                     </select>
-	    </td>                 
-       </tr>
-       <tr>
-       <th class="formTitle">二维码</th>
-        <td class="formValue">
-            <input type="text" class="form-control" name="qrCode" placeholder="请输入二维码"  
-            isvalid="yes" maxlength="200"/>
-        </td>
-       </tr>
-       
-    </table>
-</form>
-</div>
- <footer>
-	<div class="form-button" id="wizard-actions" style="text-align: center;">
-	<!--         <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a> -->
-<!-- 	        <a id="btn_next" class="btn btn-default btn-next">下一步</a> -->
-	     <a id="btn_save" class="btn btn-success">填写完成,提交表单</a>
-	 </div>
- </footer>
+    <div class="page-container" style="background-color: white;">
+        <div class="page-content" style="background-color: white; padding: 15px;">
+            <form id="form1">
 
+                <div class="formDiv">
+                    <div class="tab-content" style="padding-top: 15px;">
+                        <div id="BaseInfo" class="tab-pane active" style=" padding-right:30px;">
+                            <table class="form">
+                                <tr>
+
+                                    <td class="formTitle">任务名称<font face="宋体">*</font></td>
+                                    <td class="formValue">
+                                        <input id="userid" type="text" class="form-control" placeholder="任务名称" isvalid="yes" checkexpession="NotNull" />
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="formTitle">任务分组</td>
+                                    <td class="formValue">
+                                        <input id="englishName" type="text" class="form-control" placeholder="任务分组，暂时没做细致划分" />
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="formTitle">任务类型<font face="宋体">*</font></td>
+                                    <td class="formValue">
+                                        <div id="gender" type="select" class="ui-select" isvalid="yes" checkexpession="NotNull">
+                                            <ul>
+                                                <li data-value="1">男</li>
+                                                <li data-value="2">女</li>
+                                            </ul>
+                                        </div>
+                                    </td>
+                                </tr>
+                             
+                                <tr>
+
+                                    <td class="formTitle">创建时间<font face="宋体">*</font></td>
+                                    <td class="formValue">
+
+                                        <input id="BeginTime" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker()" placeholder="简单任务必填" checkexpession="NotNull" isvalid="yes" />
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="formTitle">程序集<font face="宋体">*</font></td>
+                                    <td class="formValue">
+                                        <input id="AssemblyDll" type="text" class="form-control" placeholder="程序集名：如SuperMgr.Task" isvalid="yes" checkexpession="NotNull" />
+                                    </td>
+                                </tr>
+                                <tr>
+
+                                    <td class="formTitle">调用类名<font face="宋体">*</font></td>
+                                    <td class="formValue">
+                                        <input id="Class" type="text" class="form-control" placeholder="程序类名：如SuperMgr.Task.Jobs.TestJob" onblur="$.fn.existField(this.id, '/SysMgr/SchedulerMgr/ExistDataCode')" isvalid="yes" checkexpession="NotNull" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td class="formTitle">cron表达式</td>
+                                    <td class="formValue">
+                                        <input id="CronExpressionString" type="text" class="form-control" placeholder="复杂任务必填" />
+                                    </td>
+                                </tr>
+
+                                <tr>
+
+                                    <td class="formTitle">任务描述</td>
+                                    <td class="formValue">
+                                        <textarea rows="5" style="width: 100%" clas="form-control" id="position" placeholder="任务描述"></textarea>
+                                    </td>
+                                </tr>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+  
 </body>
-
 </html>
+
+<script src="../../resources/superui/content/ui/global/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../resources/superui/content/ui/global/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../resources/superui/content/min/js/supershopui.common.js"></script>
+<script src="../../resources/superui/content/plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../resources/superui/content/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../resources/superui/content/supermgr/Base/js/common.js"></script>
+<script src="../../resources/js/user/index.js"></script>
+<script type="text/javascript">
+        var user = new User();
+        user.initFormControl(true);
+        window.AcceptClick = user.AcceptClick;
+</script>

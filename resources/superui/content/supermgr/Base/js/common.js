@@ -1033,7 +1033,6 @@ $.fn.setForm = function (options) {
         async: options.async,
         success: function (data) {
             if (data != null && data.type == "3") {
-
                 $.fn.modalAlert(data.meesage, "danger");
             } else {
                 options.success(data);

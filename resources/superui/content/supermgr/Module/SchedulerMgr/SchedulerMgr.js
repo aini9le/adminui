@@ -1,5 +1,4 @@
 ﻿var SchedulerMgr = function() {
-	alert("");
     var exports = {};
     exports.options = {};
     exports.options.ItemId = "";
@@ -19,7 +18,6 @@
     }
     //初始化数据
     exports.initGridPage = function () {
-       
         //初始化
         $(window).resize(function (e) {
             window.setTimeout(function () {
@@ -93,7 +91,7 @@
             $.fn.modalOpen({
                 id: "jobDetailForm",
                 title: '编辑【'+taskName+'】任务',
-                url: '/pages/supermgr/JobDetailForm.html?keyValue=' + keyValue,
+                url: '../../pages/supermgr/JobDetailForm.html?keyValue=' + keyValue,
                 width: "750px",
                 height: "550px",
                 callBack: function (iframeId) {
@@ -107,7 +105,7 @@
         $.fn.modalOpen({
             id: "jobDetailForm",
             title: '添加任务',
-            url: '/pages/supermgr/JobDetailForm.html',
+            url: '../../pages/supermgr/JobDetailForm.html',
             width: "750px",
             height: "550px",
             callBack: function (iframeId) {
@@ -124,7 +122,7 @@
             $.fn.modalOpen({
                 id: "Form",
                 title: '查看【'+jobName+'】任务日志',
-                url: '/pages/supermgr/ViewJobLog.html?keyValue=' + keyValue,
+                url: '../../pages/supermgr/ViewJobLog.html?keyValue=' + keyValue,
                 width: "900px",
                 height: "650px",
                 callBack: function (iframeId) {
@@ -136,12 +134,11 @@
     
     //加载Grid
     exports.loadGrid = function () {
-    	alert("--+")
         var selectedRowIndex = 0;
         exports.options.$gridTable = $("#gridTable");
         exports.options.$gridTable.jqGrid({
             datatype: "json",
-            url: "../../resources/superui/content/supermgr/json/JobDetailGrid.json",
+            url: "../../content/supermgr/json/JobDetailGrid.json",
             height: $.fn.getGridHeight(true),
             autowidth: true,
             colModel: [
@@ -192,7 +189,6 @@
     }
     //查询表格函数
     exports.SearchEvent=function () {
-    	alert("--")
         var queryJson = $("#form1").GetWebControls();
 
         var taskType = $("#taskTypeCondition .dropdown-text").attr('data-value');
@@ -200,7 +196,7 @@
         queryJson["TaskType"] = taskType;
         queryJson["TaskStatus"] = taskStatus;
         $("#gridTable").jqGrid('setGridParam', {
-            url: "../../resources/superui/content/supermgr/json/JobDetailGrid.json",
+            url: "../../content/supermgr/json/JobDetailGrid.json",
             postData: queryJson,
             page: 1
         }).trigger('reloadGrid');
@@ -218,7 +214,7 @@
         if (checkedRow(keyValue)) {
             $.fn.confirmAjax({
                 msg: "注：您确定要【删除】该定时任务么？该删除操作会级联删除任务日志，请谨慎操作！",
-                url: "/SysMgr/SchedulerMgr/DeleteJobStatus",
+                url: "../../SysMgr/SchedulerMgr/DeleteJobStatus",
                 param: { keyValue: keyValue },
                 success: function (data) {
                     $("#gridTable").trigger("reloadGrid");
@@ -234,7 +230,7 @@
         if (checkedRow(keyValue)) {
             $.fn.confirmAjax({
                 msg: "注：您确定要【启动】该定时任务么？",
-                url: "/SysMgr/SchedulerMgr/ManageJobStatus",
+                url: "../../SysMgr/SchedulerMgr/ManageJobStatus",
                 param: { keyValue: keyValue, jobStatus:1 },
                 success: function (data) {
                     $("#gridTable").trigger("reloadGrid");
@@ -250,7 +246,7 @@
         if (checkedRow(keyValue)) {
             $.fn.confirmAjax({
                 msg: "注：您确定要【停止】该定时任务么？",
-                url: "/SysMgr/SchedulerMgr/ManageJobStatus",
+                url: "../../SysMgr/SchedulerMgr/ManageJobStatus",
                 param: { keyValue: keyValue, jobStatus: 2 },
                 success: function (data) {
                     $("#gridTable").trigger("reloadGrid");
@@ -260,6 +256,7 @@
     }
     //保存表单
     exports.AcceptClick = function() {
+    	alert("");
         if (!$('#form1').Validform()) {
             return false;
         }
@@ -279,16 +276,13 @@
     exports.initFormControl = function (readonly) {
         exports.options.KeyValue = $.fn.request("keyValue");
 
-
-        
-
         $("#TaskType").ComboBox({
             description: "==请选择=="
         });
         //获取表单
         if (!!exports.options.KeyValue) {
             $.fn.setForm({
-                url: "/SysMgr/SchedulerMgr/GetJobDetailEntity",
+                url: "../../SysMgr/SchedulerMgr/GetJobDetailEntity",
                 param: { keyValue: exports.options.KeyValue },
                 success: function (data) {
                     $("#form1").SetWebControls(data);
