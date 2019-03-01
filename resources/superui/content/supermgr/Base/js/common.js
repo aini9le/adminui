@@ -410,11 +410,11 @@ $.fn.ComboBoxTreeSetValue = function (value) {
 $.fn.GetWebControls = function (keyValue,ignore) {
     var reVal = "";
     $(this).find("input,select,textarea,.ui-select").not(ignore).each(function (r) {
-        var id = $(this).attr("id");
+        var id = $(this).attr("name");
         var type = $(this).attr("type");
         switch (type) {
             case "checkbox":
-                if ($("#" + id).is(":checked")) {
+                if ($("[name="+id+"]" ).is(":checked")) {
                     reVal += "\"" + id + "\"" + ":" + "\"1\",";
                 } else {
                     reVal += "\"" + id + "\"" + ":" + "\"0\",";
@@ -435,7 +435,7 @@ $.fn.GetWebControls = function (keyValue,ignore) {
                 reVal += "\"" + id + "\"" + ":" + "\"" + $.trim(value) + "\",";
                 break;
             default:
-                var value = $("#" + id).val();
+                var value = $("[name="+id+"]" ).val();
                 if (value == "") {
                     value = "&nbsp;";
                 }
@@ -459,8 +459,8 @@ $.fn.GetWebControls = function (keyValue,ignore) {
 $.fn.SetWebControls = function (data) {
     var $id = $(this);
     for (var key in data) {
-        var id = $id.find("#" + key);
-        if (id.attr("id")) {
+    	var id = $id.find("[name="+ key+"]");
+        if (id.attr("name")) {
             var type = id.attr("type");
             
             if (id.hasClass("input-datepicker")) {

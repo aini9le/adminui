@@ -21,32 +21,32 @@
 <div class="modal-body" style="height:370px;">
 <form id="editForm">
     <table class="form" id="commitForm">
-     <input type="hidden"  id="id" />
+     <input type="hidden"  name="id" />
        <tr>
         <th class="formTitle">帐号</th>
         <td class="formValue">
             <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
-               class="form-control"  id="userid" placeholder="请填写帐号" />
+               class="form-control"   name="userid" placeholder="请填写帐号" />
         </td>
        </tr>
        <tr>
         <th class="formTitle">名称	</th>
         <td class="formValue">
-            <input type="text" class="form-control"  id="name" placeholder="请输入名称" 
+            <input type="text" class="form-control"  name="name" placeholder="请输入名称" 
             isvalid="yes" checkexpession="NotNull" maxlength="200"/>
         </td>
        </tr>
        <tr>
         <th class="formTitle">手机号码</th>
         <td class="formValue">
-            <input type="text" class="form-control"  id="mobile" placeholder="请输入手机号码"
+            <input type="text" class="form-control"  name="mobile" placeholder="请输入手机号码"
             isvalid="yes" checkexpession="Mobile" maxlength="200"/>
         </td>
        </tr>
        <tr>
         <th class="formTitle">职位信息</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="position" placeholder="请输入职位信息"
+            <input type="text" class="form-control" name="position" placeholder="请输入职位信息"
             isvalid="yes" maxlength="200"/>
         </td>
        </tr>
@@ -63,14 +63,14 @@
        <tr>
         <th class="formTitle">邮箱</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="email" placeholder="请输入邮箱"
+            <input type="text" class="form-control" name="email" placeholder="请输入邮箱"
              maxlength="200"/>
         </td>
        </tr>
        <tr>
         <th class="formTitle">否为上级</th>
         <td class="formValue">
-        <select class="form-control" style="width:179px;" id="isleader">
+        <select class="form-control" style="width:179px;" name="isleader">
 	                                    <option value="0" th:selected="${user.isleader=='0'}">否</option>
 	                                    <option value="1" th:selected="${user.isleader=='1'}">是</option>
 	                     </select>
@@ -79,28 +79,28 @@
        <tr>
         <th class="formTitle">头像url</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="avatar" placeholder="请输入头像url"
+            <input type="text" class="form-control" name="avatar" placeholder="请输入头像url"
             isvalid="yes"  maxlength="200"/>
         </td>
        </tr>
        <tr>
        <th class="formTitle">座机</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="telephone" placeholder="请输座机"
+            <input type="text" class="form-control" name="telephone" placeholder="请输座机"
              maxlength="200"/>
         </td>
        </tr>
        <tr>
        <th class="formTitle">英文名</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="englishName" placeholder="请输入英文名"
+            <input type="text" class="form-control" name="englishName" placeholder="请输入英文名"
              maxlength="200"/>
         </td>
        </tr>
        <tr>
         <th class="formTitle">激活状态</th>
         <td class="formValue">
-        <select class="form-control" style="width:179px;" id="status">
+        <select class="form-control" style="width:179px;" name="status">
 	                                    <option value="1" th:selected="${user.status=='1'}">已激活</option>
 	                                    <option value="2" th:selected="${user.status=='2'}">已禁用</option>
 	                                    <option value="3" th:selected="${user.status=='3'}">未激活</option>
@@ -110,7 +110,7 @@
        <tr>
        <th class="formTitle">二维码</th>
         <td class="formValue">
-            <input type="text" class="form-control" id="qrCode" placeholder="请输入二维码"
+            <input type="text" class="form-control" name="qrCode" placeholder="请输入二维码"
             isvalid="yes" maxlength="200"/>
         </td>
        </tr>

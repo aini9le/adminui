@@ -7,8 +7,7 @@ var User = function() {
 		tableName : "#dataTable",
 		openId : "userEditForm",
 		dataUrl : baseUrl + "/user/dataGrid",
-		editUrl : baseUrl + "/user/editIndex",
-		editFormIndex : "../../pages/user/editIndex.html"
+		editUrl : baseUrl + "/user/editIndex"
 
 	}; //参数对象
 
@@ -209,10 +208,20 @@ var User = function() {
 		});
 	}
 
-	obj.modalOpen = function(openId, id) {//修改或新曾弹出框
+	/*obj.modalOpen = function(openId, id) {//修改或新曾弹出框
 		$.fn.modalNotFooterOpen({
 			title : "编辑管理员信息",
 			url : 'editIndex.html?id=' + id,
+			width : "800px",
+			height : "500px"
+		});
+
+	}*/
+	
+	obj.modalOpen = function(openId, id) {//修改或新曾弹出框
+		$.fn.modalNotFooterOpen({
+			title : "编辑管理员信息",
+			url : 'editIndex2.html?id=' + id,
 			width : "800px",
 			height : "500px"
 		});
