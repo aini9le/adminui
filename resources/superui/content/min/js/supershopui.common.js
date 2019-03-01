@@ -1130,7 +1130,7 @@ function _init() {
 
 var App = function() {
 
-    var basePath = '/content/';
+    var basePath = '/adminui/resources/superui/content/';
 
     var imgPath = 'ui/img/';
 

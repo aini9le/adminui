@@ -16,27 +16,27 @@
                 <!-- BEGIN SAMPLE TABLE PORTLET-->
                 <div class="col-md-12">
                     <!-- BEGIN SAMPLE TABLE PORTLET-->
-                    <div class="box-body" style="padding-bottom:0px;">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">查询条件</div>
-                            <div class="panel-body">
-                                <form id="formSearch" class="form-horizontal">
-                                    <div class="form-group" style="margin-top:15px">
-                                        <label class="control-label col-sm-1" for="txt_search_departmentname">姓</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="txt_search_departmentname">
-                                        </div>
-                                        <label class="control-label col-sm-1" for="txt_search_statu">用户名</label>
-                                        <div class="col-sm-3">
-                                            <input type="text" class="form-control" id="txt_search_statu">
-                                        </div>
-                                        <div class="col-sm-4" style="text-align:left;">
-                                            <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                     <div class="box-body" style="padding-bottom:0px;" >
+                        <div class="panel panel-default" style="margin: 0px;">
+	                        <div class="panel-heading">查询条件</div>
+	                        <div class="panel-body" style="margin-bottom: 0px;padding: 0px;">
+	                            <form id="formSearch" class="form-horizontal">
+	                                <div class="form-group" style="margin: 0px 2px;">
+	                                    <label class="control-label col-sm-1" for="txt_search_departmentname">帐号</label>
+	                                    <div class="col-sm-2">
+	                                        <input type="text" class="form-control" placeholder="输入帐号" name="userid"/>
+	                                    </div>
+	                                    <label class="control-label col-sm-1" for="txt_search_departmentname">名称</label>
+	                                    <div class="col-sm-2">
+	                                        <input type="text" class="form-control" placeholder="输入名称" name="name"/>
+	                                    </div>
+	                                    <div class="col-sm-3" style="text-align:left;">
+	                                        <button type="button" style="margin-left:50px" id="btn_query" class="btn btn-primary">查询</button>
+	                                    </div>
+	                                </div>
+	                            </form>
+	                        </div>
+                       </div>
 
                         <div id="toolbar" class="btn-group">
                             <button id="btn_add" type="button" class="btn btn-default">
@@ -68,6 +68,8 @@
 <script src="../../resources/superui/content/min/js/supershopui.common.js"></script>
 <script src="../../resources/superui/content/plugins/bootstrap-table/bootstrap-table.js"></script>
 <script src="../../resources/superui/content/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../resources/superui/content/supermgr/Base/js/common.js"></script>
+<script src="../../resources/js/main/app.js"></script>
 <script src="../../resources/superui/modalUtils.js"></script>
 <script src="../../resources/js/user/index.js"></script>
 <script type="text/javascript">

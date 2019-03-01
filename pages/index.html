@@ -10,11 +10,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <title>SuperUI前端框架</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="../resources/superui/content/ui/global/bootstrap/css/bootstrap.min.css">
-    <!-- Font Awesome -->
-    <link href="../resources/superui/content/ui/global/font-awesome/css/font-awesome.css" rel="stylesheet" />
-    <!-- Theme style -->
+    <link rel="stylesheet" href="../resources/superui/content/ui/global/font-awesome/css/font-awesome.css">
     <link rel="stylesheet" href="../resources/superui/content/adminlte/dist/css/AdminLTE.css">
     <link rel="stylesheet" href="../resources/superui/content/adminlte/dist/css/skins/_all-skins.css">
     <link href="../resources/superui/content/min/css/supershopui.common.min.css" rel="stylesheet" />
@@ -493,13 +490,14 @@ immediately after the control sidebar -->
     <!-- jQuery 2.2.3 -->
     <script src="../resources/superui/content/ui/global/jQuery/jquery.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
-<script src="../resources/superui/content/ui/global/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../resources/superui/content/ui/global/bootstrap/js/bootstrap.min.js"></script>
     <script src="../resources/superui/content/min/js/supershopui.common.js"></script>
 
 
 <script type="text/javascript">
     $(function() {
-        addTabs(({ id: '10008', title: '欢迎页', close: false, url: '../resources/superui/admin/dashboard.html' }));
+        /* addTabs(({ id: '10008', title: '欢迎页', close: false, url: '../resources/superui/admin/dashboard.html' })); */
+        addTabs(({ id: '10008', title: '欢迎页', close: false, url: '' }));
         App.fixIframeCotent();
         var menus = [
 			{ id: "10010", text: "我的工作台", isHeader: true },

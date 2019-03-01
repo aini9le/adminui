@@ -1,51 +1,43 @@
-var User = function(){	
+var User = function() {
+
 	var user = new Object();
-	user.options = {
-			
-	}
-	user.initIndex = function () {
+	user.options = {}
+	//初始化
+	user.initIndex = function() {
 		user.initFormControl(true);
-		$("#btn_save").on("click",function(){
-			//保存表单
-			user.AcceptClick = function() {
-				console.log("--");
-		        /*if (!$('#userEditForm').Validform()) {
-		            return false;
-		        }*/
-		        var postData = $("#form1").GetWebControls(exports.options.KeyValue);
-		        console.log("postData:"+postData)
-//		        $.fn.submitForm({
-//		            url: "/SysMgr/SchedulerMgr/Save?keyValue=" + exports.options.KeyValue,
-//		            param: postData,
-//		            loading: "正在保存数据...",
-//		            success: function() {
-//		                $.currentIframe().$("#gridTable").resetSelection();
-//		                $.currentIframe().$("#gridTable").trigger("reloadGrid");
-//		            }
-//		        });
-		    };
-		})
+		user.buttonInit();
 	};
-	
-	
-	
-	//初始化表单
-	user.initFormControl = function (readonly) {
-//		user.options.KeyValue = $.fn.request("keyValue");
-	        $("#gender").ComboBox({
-	            description: "==请选择=="
-	        });
-	        //获取表单
-//	        if (!!exports.options.KeyValue) {
-	            $.fn.setForm({
-	                url: "http://localhost:8888/admin/user/findById?id=1011525769814718007",
-	                param: {},
-	                success: function (data) {
-	                    $("#form1").SetWebControls(data.info.data);
-	                }
-	            });
-//	        }
-	    }
-	
+
+	user.buttonInit = function() {
+		//保存表单
+		$("#btn_save").on("click", function() {
+			if (!$('#commitForm').Validform()) {//表单验证
+				return false;
+			}
+			var postData = $("#commitForm").GetWebControls();
+			console.log("postData:" + JSON.stringify(postData))
+			$.fn.submitForm({
+				url : "/user/saveOrUpdate",
+				param : JSON.stringify(postData),
+				success : function(result) {
+					$.fn.modalMsg("保存成功", "success");
+					$.fn.modalCloseAndRefreshByIndex();
+				}
+			});
+		})
+	}
+
+	//初始化表单赋值
+	user.initFormControl = function(readonly) {
+		var id = $.fn.request("id");
+		$.fn.setForm({
+			url : "/user/findById?id=" + id,
+			param : {},
+			success : function(data) {
+				$("#editForm").SetWebControls(data.info.data);
+			}
+		});
+	}
+
 	return user;
 }

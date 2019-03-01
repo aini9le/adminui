@@ -892,21 +892,19 @@ $.fn.submitForm = function (options) {
     var options = $.extend(defaults, options);
     $.loading(true, options.loading);
     window.setTimeout(function () {
-
         $.ajax({
-            url: options.url,
+            url: window.baseUrl+options.url,
+            contentType: "application/json; charset=utf-8",
             data: options.param,
             type: "post",
             dataType: "json",
-            success: function (data) {
-                if (data.IsSucceeded==true) {
-                    options.success(data);
-                    $.fn.modalMsg(data.Message, "success");
-                    if (options.close == true) {
-                        $.fn.modalClose();
-                    }
+            success: function (result) {
+                if (result.code==200) {
+                    options.success(result);
+                } else if(result.code==500){
+                	$.fn.modalAlert(result.message, "warning");
                 } else {
-                    $.fn.modalAlert(data.Message, "danger");
+                    $.fn.modalAlert(result.Message, "error");
                 }
             },
             error: function (XMLHttpRequest, textStatus, errorThrown) {
@@ -1026,7 +1024,7 @@ $.fn.setForm = function (options) {
     };
     var options = $.extend(defaults, options);
     $.ajax({
-        url: options.url,
+        url: baseUrl+options.url,
         data: options.param,
         type: options.type,
         dataType: options.dataType,

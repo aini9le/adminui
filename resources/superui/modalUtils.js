@@ -133,3 +133,11 @@ $.fn.modalClose = function () {
         location.reload();
     }
 }
+/**
+ * 关闭弹窗病刷新父窗口
+ */
+$.fn.modalCloseAndRefreshByIndex = function (index) {
+	parent.window.location.reload();
+	var index = parent.layer.getFrameIndex(userInfoTable); //获取窗口索引
+    parent.layer.close(index);
+}
