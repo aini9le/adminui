@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>SuperMgr后台框架</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="" name="description" />
+    <meta content="" name="author" />
+    <link rel="stylesheet" href="../../resources/superui/content/ui/global/bootstrap/css/bootstrap.css"/>
+	<link rel="stylesheet" href="../../resources/superui/content/ui/global/font-awesome/css/font-awesome.css" />
+	<link href="../../resources/superui/content/ui/global/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="../../resources/superui/content/adminlte/dist/css/AdminLTE.css"/>
+	<link rel="stylesheet" href="../../resources/superui/content/adminlte/dist/css/skins/_all-skins.css"/>
+	<link href="../../resources/superui/content/min/css/supershopui.common.min.css" rel="stylesheet" />
+	<link href="../../resources/superui/content/plugins/bootstrap-table/bootstrap-table.css" rel="stylesheet" />
+	<link href="../../resources/superui/content/supermgr/Base/css/common.css" rel="stylesheet" />
+
+</head>
+<body>
+<div class="modal-body" style="height:370px;">
+<form id="editForm">
+    <table class="form">
+       <tr>
+        <th class="formTitle">帐号</th>
+        <td class="formValue">
+            <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
+               class="form-control"   name="userid" placeholder="请填写帐号" />
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">名称	</th>
+        <td class="formValue">
+            <input type="text" class="form-control"  name="name" placeholder="请输入名称" 
+            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
+        </td>
+       </tr>
+    </table>
+    <table class="form1">
+        <tr>
+        <th class="formTitle">帐号</th>
+        <td class="formValue">
+            <input type="text" maxlength="" isvalid="yes" checkexpession="NotNull"  style="width: 200px;" 
+               class="form-control"   name="userid" placeholder="请填写帐号" />
+        </td>
+       </tr>
+       <tr>
+        <th class="formTitle">名称	</th>
+        <td class="formValue">
+            <input type="text" class="form-control"  name="name" placeholder="请输入名称" 
+            isvalid="yes" checkexpession="NotNull" maxlength="200"/>
+        </td>
+       </tr>
+    </table>
+</form>
+</div>
+ </body>
+<footer>
+	<div class="form-button" id="wizard-actions" style="text-align: center;position: absolute;">
+	<!--         <a id="btn_last" disabled class="btn btn-default btn-prev">上一步</a> -->
+<!-- 	        <a id="btn_next" class="btn btn-default btn-next">下一步</a> -->
+	     <a id="btn_save" class="btn btn-success">填写完成,提交表单</a>
+	 </div>
+ </footer>
+
+<script src="../../resources/superui/content/ui/global/jQuery/jquery.min.js"></script>
+<script src="../../resources/superui/content/ui/global/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../resources/superui/content/min/js/supershopui.common.js"></script>
+<script src="../../resources/superui/content/plugins/bootstrap-table/bootstrap-table.js"></script>
+<script src="../../resources/superui/content/plugins/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<script src="../../resources/superui/content/supermgr/Base/js/common.js"></script>
+<script src="../../resources/superui/content/plugins/validator/validator.js"></script>
+<script src="../../resources/js/main/app.js"></script>
+<script src="../../resources/superui/modalUtils.js"></script>
+<script src="../../resources/js/user/editIndex.js"></script>
+<script type="text/javascript">
+        var user = new User();
+        user.initIndex();
+</script>
+</html>
